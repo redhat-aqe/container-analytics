@@ -1,75 +1,64 @@
 import React from 'react';
 import './App.css';
-import { ChartArea, ChartGroup, ChartLabel, ChartVoronoiContainer } from '@patternfly/react-charts';
-import * as _ from 'lodash';
-import EventEmitter from 'events';
+import { Chart, ChartArea, ChartGroup, ChartVoronoiContainer } from '@patternfly/react-charts';
+import { Button } from '@patternfly/react-core';
+import { TimespanDropdown } from './TimespanDropdown';
+import '@patternfly/react-core/dist/styles/base.css';
 
-interface appProps {
+interface AppProps {
   name?: string;
-  chartData?: [];
-  events?: string;
-  eventHandler?: string;
+  chartData?: any[];
 }
 
-export default class App extends React.Component<appProps> {
+interface AppState {
+  width: number;
+}
 
-  attributes = {};
+export default class App extends React.Component<AppProps, AppState> {
 
-  emitter = new EventEmitter();
+  containerRef: React.RefObject<any>;
 
-  charTitle = 'CPU2';
-
-  myRef = document.createElement('span') as HTMLDivElement;
-
-  constructor(public props: appProps) {
+  constructor(props: AppProps) {
     super(props);
+    this.containerRef = React.createRef();
 
-    this.triggerEvent = this.triggerEvent.bind(this);
-    this.props.eventHandler = 'chartButtonClicked';
+    this.state = {
+      width: 0
+    };
   }
 
-  triggerEvent() {
-    console.log('react button clicked');
-    this.charTitle = 'FooTitle';    
-    const ev = new CustomEvent('chartButtonClicked', {
-      bubbles: true,
-      detail: { text: () => 'triggered from react' },
-      composed: true
-    })
-    
-    // this.emitter.emit('chartButtonClicked', {detail: 'triggered From react', composed: true});
-    // this.props.events = 'foooo';
-    this.myRef.dispatchEvent(ev); // attempt to dispatch an event by creating an element 
+  handleResize = () => {
+    this.setState({width: this.containerRef.current.clientWidth})
   }
 
   componentDidMount() {
-    // this.emitter.emit('chartButtonClicked', {detail: 'triggered From react 22', composed: true});
+    setTimeout(() => {
+      this.setState({width: this.containerRef.current.clientWidth});
+      window.addEventListener('resize', this.handleResize);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
-    const divStyle = {
-      width: '250px',
-      height: '250px'
-    };
+    const container = <ChartVoronoiContainer labels={datum => `${datum.name}: ${datum.y}`} />
 
-    // console.log(`props: ${this.props.chartData}`);
     return (
-      <div style={divStyle}>
-        <p>Here should be {this.props.name}</p>
-        <button onClick={this.triggerEvent}>Trigger Event</button>
-        <div>
-          <ChartLabel className="chart-label" text={this.charTitle}/>
-          <div className="sparkline-chart">
-            <ChartGroup
-              ariaDesc="Average number of pets"
-              ariaTitle="Sparkline chart example"
-              containerComponent={<ChartVoronoiContainer labels={datum => datum.y} />}
-              height={75}
-              padding={0}
-              width={400}
-            >
-              <ChartArea data={this.props.chartData}/>
-            </ChartGroup>
+      <div>
+        <TimespanDropdown></TimespanDropdown>
+        <p>A graph of {this.props.name}!</p>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <div ref={this.containerRef}>
+          <div className="area-chart-overflow">
+            <Chart containerComponent={container} height={300} width={this.state.width}>
+              <ChartGroup ariaDesc="Average number of pets"
+                          ariaTitle="Sparkline chart example">
+                <ChartArea data={this.props.chartData}/>
+              </ChartGroup>
+            </Chart>
           </div>
         </div>
       </div>
