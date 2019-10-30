@@ -8,7 +8,7 @@ class Analytics extends HTMLElement {
 
   mountPoint = document.createElement('div');
   _shadowRoot: ShadowRoot;
-  _chartdata: any[] = [];
+  _data: any[] = [];
 
   constructor() {
     super();
@@ -24,18 +24,6 @@ class Analytics extends HTMLElement {
   connectedCallback() {
     retargetEvents(this._shadowRoot);
     this.mount();
-
-    const timespan = this._shadowRoot.getElementById('timespan');
-    if (timespan) {
-      timespan.addEventListener('change', (event) => {
-        const ev = new CustomEvent('dateRangeChanged', {
-          bubbles: true,
-          detail: { text: 'foobar' },
-          composed: true
-        })
-        this.dispatchEvent(ev);
-      });
-    }
   }
 
   attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
@@ -52,29 +40,21 @@ class Analytics extends HTMLElement {
   }
 
   mount() {
-    ReactDOM.render(<App name={this.name} chartData={this.chartData} />, this.mountPoint);
+    ReactDOM.render(<App data={this.data} />, this.mountPoint);
   }
 
   unmount() {
     ReactDOM.unmountComponentAtNode(this);
   }
 
-  static get observedAttributes() {
-    return ['name'];
+  get data(): any[] {
+    return this._data;
   }
 
-  get name(): string {
-    return this.getAttribute('name') || '';
-  }
-
-  get chartData(): any[] {
-    return this._chartdata;
-  }
-
-  set chartData(newValue) {
-    this._chartdata = newValue;
+  set data(newValue) {
+    this._data = newValue;
     this.update();
   }
 }
 
-customElements.define('analytics-react-poc', Analytics); 
+customElements.define('redhat-container-analytics', Analytics);

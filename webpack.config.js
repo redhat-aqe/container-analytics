@@ -44,8 +44,8 @@ module.exports = {
   module: {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { 
-        test: /\.(t?|j?)s(x?)$/, 
+      {
+        test: /\.(t?|j?)s(x?)$/,
         exclude: /node_modules/,
         loaders: ["ts-loader"],
       },
