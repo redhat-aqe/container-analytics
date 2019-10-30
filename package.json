@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "test": "jest --silent --ci",
+    "test": "jest --ci",
     "lint": "tslint -p tsconfig.json",
     "build": "webpack --mode production --config webpack.config.js --progress --display-error-details"
   },
