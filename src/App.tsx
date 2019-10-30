@@ -5,39 +5,15 @@ interface AppProps {
   data?: any[];
 }
 
-interface AppState {
-  width: number;
-}
+interface AppState {}
 
 export default class App extends React.Component<AppProps, AppState> {
 
-  containerRef: React.RefObject<any>;
-
   constructor(props: AppProps) {
     super(props);
-    this.containerRef = React.createRef();
-
-    this.state = {
-      width: 0
-    };
-  }
-
-  handleResize = () => {
-    this.setState({width: this.containerRef.current.clientWidth})
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({width: this.containerRef.current.clientWidth});
-      window.addEventListener('resize', this.handleResize);
-    });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
-    return <div></div>;
+    return <div className='rh-container-analytics-root'></div>;
   }
 }
