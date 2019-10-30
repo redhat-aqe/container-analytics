@@ -21,6 +21,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "test": "jest --silent --ci",
+    "lint": "tslint -p tsconfig.json",
     "build": "webpack --mode production --config webpack.config.js --progress --display-error-details"
   },
   "eslintConfig": {
@@ -62,6 +63,8 @@
     "terser-webpack-plugin": "^2.1.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
+    "tslint": "^5.20.0",
+    "tslint-react": "^4.1.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.1.0",
     "webpack": "4.39.3",
@@ -74,12 +77,22 @@
       "html",
       "text"
     ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "setupFiles": ["<rootDir>/src/setupTests.js"]
+    "setupFiles": [
+      "<rootDir>/src/setupTests.js"
+    ]
   }
 }

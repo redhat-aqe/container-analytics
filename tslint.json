@@ -1,0 +1,26 @@
+{
+   "extends": [
+        "tslint:latest",
+        "tslint-react"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "config/**/*.js",
+            "node_modules/**/*.ts",
+            "coverage/**/*.js"
+        ]
+    },
+    "rules": {
+        "jsx-no-multiline-js": false,
+        "member-access": false,
+        "no-empty-interface": false,
+        "no-implicit-dependencies": [true, "dev"],
+        "no-submodule-imports": [true, "@patternfly"],
+        "quotemark": [true, "single", "jsx-double", "avoid-escape"],
+        "variable-name": {
+            "options": [
+                "allow-leading-underscore"
+            ]
+        }
+    }
+}

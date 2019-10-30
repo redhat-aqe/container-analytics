@@ -1,19 +1,19 @@
-import React from 'react';
 import '@patternfly/react-core/dist/styles/base.css';
+import React from 'react';
 
-interface AppProps {
+interface IAppProps {
   data?: any[];
 }
 
-interface AppState {}
+interface IAppState {}
 
-export default class App extends React.Component<AppProps, AppState> {
+export default class App extends React.Component<IAppProps, IAppState> {
 
-  constructor(props: AppProps) {
+  constructor(props: IAppProps) {
     super(props);
   }
 
   render() {
-    return <div className='rh-container-analytics-root'></div>;
+    return <div className="rh-container-analytics-root"/>;
   }
 }

@@ -1,13 +1,13 @@
-import React from 'react';
 import { FormSelect, FormSelectOption } from '@patternfly/react-core';
+import React from 'react';
 
-interface TimespanDropdownProps {}
+interface ITimespanDropdownProps {}
 
-interface TimespanDropdownState {
+interface ITimespanDropdownState {
   value: string;
 }
 
-export class TimespanDropdown extends React.Component<TimespanDropdownProps, TimespanDropdownState> {
+export class TimespanDropdown extends React.Component<ITimespanDropdownProps, ITimespanDropdownState> {
 
   options = [
     { value: 720, label: 'Last 30 days' },
@@ -15,7 +15,7 @@ export class TimespanDropdown extends React.Component<TimespanDropdownProps, Tim
     { value: 24, label: 'Last 24 hours' },
   ];
 
-  constructor(props: TimespanDropdownProps) {
+  constructor(props: ITimespanDropdownProps) {
     super(props);
 
     this.state = {
@@ -32,7 +32,7 @@ export class TimespanDropdown extends React.Component<TimespanDropdownProps, Tim
     return (
       <FormSelect id="timespan" value={this.state.value} onChange={this.onChange}>
         {this.options.map((option, index) => {
-          return <FormSelectOption key={index} value={option.value} label={option.label} />
+          return <FormSelectOption key={index} value={option.value} label={option.label} />;
         })}
       </FormSelect>
     );

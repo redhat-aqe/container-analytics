@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import retargetEvents from 'react-shadow-dom-retarget-events';
+import App from './App';
 import Constants from './constants';
 
 class Analytics extends HTMLElement {
