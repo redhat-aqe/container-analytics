@@ -1,0 +1,48 @@
+stages:
+  - install
+  - lint
+  - test
+
+install:
+  stage: install
+  image:
+    name: quay.io/redhat-aqe/angular:latest
+  tags:
+    - upshift
+  script:
+    - npm install
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - node_modules/
+    policy: push
+
+lint:
+  stage: lint
+  image:
+    name: quay.io/redhat-aqe/angular:latest
+  tags:
+    - upshift
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - node_modules/
+    policy: pull
+  script: 
+    - npm install
+    - npm run lint
+
+test:
+  stage: test
+  image:
+    name: quay.io/redhat-aqe/angular:latest
+  tags:
+    - upshift
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - node_modules/
+    policy: pull
+  script: 
+    - npm install
+    - npm run test
