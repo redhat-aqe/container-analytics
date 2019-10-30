@@ -21,7 +21,6 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "test": "jest --silent --ci",
-    "test-with-coverage": "jest --silent --ci --coverage",
     "build": "webpack --mode production --config webpack.config.js --progress --display-error-details"
   },
   "eslintConfig": {
@@ -40,12 +39,16 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.18",
     "@types/prop-types": "^15.7.1",
     "@types/react-shadow-dom-retarget-events": "^1.0.0",
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
@@ -68,14 +71,15 @@
   "jest": {
     "collectCoverage": true,
     "coverageReporters": [
-      "json",
-      "html"
+      "html",
+      "text"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
-    }
+    },
+    "setupFiles": ["<rootDir>/src/setupTests.js"]
   }
 }
