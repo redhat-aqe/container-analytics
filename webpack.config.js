@@ -8,6 +8,7 @@ const path = require('path');
 const BG_IMAGES_DIRNAME = 'bgimages';
 
 module.exports = {
+  watch: true,
   plugins: [
     new HtmlWebpackPlugin({
       path: path.resolve(__dirname, 'public'),
@@ -153,6 +154,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     inline: true,
     compress: true,
-    port: 3000
+    port: 3000,
+    writeToDisk: true
   }
 };
