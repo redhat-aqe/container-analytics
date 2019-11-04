@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 10
+before_install:
+  # Remove Red Hat npm registry definition
+  - rm .npmrc
+install:
+  - npm install
+script:
+  - npm run lint
+  - npm test
