@@ -7,7 +7,8 @@
         "exclude": [
             "config/**/*.js",
             "node_modules/**/*.ts",
-            "coverage/**/*.js"
+            "coverage/**/*.js",
+            "dist/**/*.js"
         ]
     },
     "rules": {
