@@ -1,28 +1,19 @@
+import '@patternfly/react-core/dist/styles/base.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import retargetEvents from 'react-shadow-dom-retarget-events';
 import App from './App';
-import Constants from './constants';
 
 class Analytics extends HTMLElement {
 
   mountPoint = document.createElement('div');
-  _shadowRoot: ShadowRoot;
   _data: any[] = [];
 
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({mode: 'open'});
-    this._shadowRoot.appendChild(this.mountPoint);
-
-    const styleElement: HTMLStyleElement = document.createElement('style');
-    styleElement.type = 'text/css';
-    styleElement.appendChild(document.createTextNode(Constants.CUSTOM_ELEMENT_STYLES));
-    this._shadowRoot.appendChild(styleElement);
+    this.appendChild(this.mountPoint);
   }
 
   connectedCallback() {
-    retargetEvents(this._shadowRoot);
     this.mount();
   }
 
