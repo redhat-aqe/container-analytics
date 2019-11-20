@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const WebComponentStylesPlugin = require('./web-component-styles-plugin');
 const path = require('path');
 
 const BG_IMAGES_DIRNAME = 'bgimages';
@@ -17,11 +16,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
       allChunks: true,
-    }),
-    new WebComponentStylesPlugin({
-      stylesPath: './dist/styles.css',
-      scriptPath: './dist/analytics.js',
-      replace: 'CUSTOM_ELEMENT_STYLES'
     })
   ],
   optimization: {
@@ -37,7 +31,8 @@ module.exports = {
 	output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'analytics.js'
-	},
+  },
+  devtool: 'source-map',
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: [ ".js", ".ts", ".tsx"]
