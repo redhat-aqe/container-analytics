@@ -1,19 +1,19 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { PullCountTagSelect } from './PullCountTagSelect';
-import { IPullCountRecord } from './types';
+import { IPullCountTagRecord } from './types';
 
 describe('PullCountTagSelect component', () => {
 
   const callback = jest.fn();
 
-  const data: IPullCountRecord[] = [
-    {date: '01-01-2019', tags: ['1.0'], pullCount: 1},
-    {date: '01-01-2019', tags: ['2.0'], pullCount: 1},
-    {date: '01-01-2019', tags: ['3.0'], pullCount: 1},
-    {date: '01-01-2019', tags: ['4.0'], pullCount: 1},
-    {date: '01-01-2019', tags: ['5.0'], pullCount: 1},
-    {date: '01-01-2019', tags: ['6.0'], pullCount: 1},
+  const data: IPullCountTagRecord[] = [
+    {download_date: '01-01-2019', image_tags: ['1.0'], pull_count: 1},
+    {download_date: '01-01-2019', image_tags: ['2.0'], pull_count: 1},
+    {download_date: '01-01-2019', image_tags: ['3.0'], pull_count: 1},
+    {download_date: '01-01-2019', image_tags: ['4.0'], pull_count: 1},
+    {download_date: '01-01-2019', image_tags: ['5.0'], pull_count: 1},
+    {download_date: '01-01-2019', image_tags: ['6.0'], pull_count: 1},
   ];
 
   it('renders', () => {
@@ -28,7 +28,7 @@ describe('PullCountTagSelect component', () => {
   });
 
   it('defaults to latest selected', () => {
-    const latestData = [{date: '01-01-2019', tags: ['latest'], pullCount: 1}, ...data];
+    const latestData = [{download_date: '01-01-2019', image_tags: ['latest'], pull_count: 1}, ...data];
     const wrapper = shallow(<PullCountTagSelect data={latestData} onTagsSelected={callback} />);
     expect(wrapper.state('selected')).toEqual(['latest']);
     expect(wrapper.state('placeholderText')).toEqual('Tags selected');

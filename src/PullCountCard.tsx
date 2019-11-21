@@ -3,10 +3,10 @@ import React from 'react';
 import { PullCountStackChart } from './PullCountStackChart';
 import { PullCountTagSelect } from './PullCountTagSelect';
 import { Timespan } from './Timespan';
-import { IPullCountRecord } from './types';
+import { IPullCountTagRecord } from './types';
 
 interface IPullCountCardProps {
-  data: IPullCountRecord[];
+  data: IPullCountTagRecord[];
   timespan: Timespan;
 }
 
