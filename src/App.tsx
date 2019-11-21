@@ -1,4 +1,4 @@
-import { Page, PageSection } from '@patternfly/react-core';
+import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
 import React from 'react';
 import { PullCountCard } from './PullCountCard';
 import { Timespan } from './Timespan';
@@ -80,8 +80,24 @@ export default class App extends React.Component<IAppProps, IAppState> {
     return (
       <Page className="rh-container-analytics-root">
         <PageSection>
-          <TimespanSelect onOptionSelected={this.onTimespanChange}/>
-          <PullCountCard data={this.data} timespan={this.state.timespan}/>
+          <Grid gutter="md">
+            <GridItem span={12}>
+                Activity for <TimespanSelect onOptionSelected={this.onTimespanChange}/>
+            </GridItem>
+            <GridItem span={12}>
+              <Title size="2xl">{this.state.timespan.toString()}</Title>
+            </GridItem>
+            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={12}>
+              <PullCountCard data={this.data} timespan={this.state.timespan}/>
+            </GridItem>
+            <GridItem span={6}><Card>TODO</Card></GridItem>
+            <GridItem span={6}><Card>TODO</Card></GridItem>
+            <GridItem span={12}><Card>TODO</Card></GridItem>
+          </Grid>
         </PageSection>
       </Page>
     );
