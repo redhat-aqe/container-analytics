@@ -5,8 +5,10 @@ import { OverviewCard } from './OverviewCard';
 describe('OverviewCard component', () => {
 
   it('renders', () => {
-    const wrapper = shallow(<OverviewCard data={[]} total={9900} count={1000}/>);
+    const wrapper = shallow(<OverviewCard title="foo" data={[]} total={9900} count={1000}/>);
     expect(wrapper.find('.rh-overview-card').exists()).toBeTruthy();
+    expect(wrapper.find('.rh-overview-card-title').exists()).toBeTruthy();
+    expect(wrapper.find('.rh-overview-card-title').render().text()).toBe('foo');
     expect(wrapper.find('.rh-overview-card-count').exists()).toBeTruthy();
     expect(wrapper.find('.rh-overview-card-count').render().text()).toBe('1k');
     expect(wrapper.find('.rh-overview-card-total').exists()).toBeTruthy();
@@ -14,7 +16,7 @@ describe('OverviewCard component', () => {
   });
 
   it('formats numbers', () => {
-    const wrapper = shallow(<OverviewCard data={[]} total={0} count={0}/>);
+    const wrapper = shallow(<OverviewCard title="" data={[]} total={0} count={0}/>);
     const component = wrapper.instance() as OverviewCard;
     expect(component.formatNumber(1)).toBe('1');
     expect(component.formatNumber(999)).toBe('999');
