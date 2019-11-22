@@ -3,13 +3,14 @@ import moment from 'moment';
 import React from 'react';
 import { PullCountStackChart } from './PullCountStackChart';
 import { Timespan } from './Timespan';
+import { IPullCountTagRecord } from './types';
 
 describe('PullCountStackChart component', () => {
 
-  const data = [
-    {date: '2019-01-01', tags: ['latest', '8.0', '8.0-122'], pullCount: 1},
-    {date: '2018-12-31', tags: ['latest', '8.0-154'], pullCount: 2},
-    {date: '2018-12-30', tags: ['8.0'], pullCount: 3},
+  const data: IPullCountTagRecord[] = [
+    {download_date: '2019-01-01', image_tags: ['latest', '8.0', '8.0-122'], pull_count: 1},
+    {download_date: '2018-12-31', image_tags: ['latest', '8.0-154'], pull_count: 2},
+    {download_date: '2018-12-30', image_tags: ['8.0'], pull_count: 3},
   ];
 
   it('renders', () => {

@@ -10,11 +10,11 @@ import {
 import * as _ from 'lodash';
 import React from 'react';
 import { Timespan } from './Timespan';
-import { IPullCountRecord } from './types';
+import { IPullCountTagRecord } from './types';
 
 interface IPullCountStackChartProps {
   timespan: Timespan;
-  data: IPullCountRecord[];
+  data: IPullCountTagRecord[];
   tags: string[];
 }
 
@@ -65,7 +65,7 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
   getBars(): {[tag: string]: Array<{name: string, x: number, y: number}>} {
     // Group all the data by the index of the interval in the timespan
     const byInterval = _.groupBy(this.props.data, (datum) => {
-      const result = this.props.timespan.getInterval(new Date(datum.date));
+      const result = this.props.timespan.getInterval(new Date(datum.download_date));
       return result ? result[0] : undefined;
     });
 
@@ -79,8 +79,8 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
         if (index in byInterval) {
           // Add up all pull counts mentioning this tag in the interval
           for (const tagStats of byInterval[index]) {
-            if (tagStats.tags.includes(tag)) {
-              pullCount += tagStats.pullCount;
+            if (tagStats.image_tags.includes(tag)) {
+              pullCount += tagStats.pull_count;
             }
           }
         }

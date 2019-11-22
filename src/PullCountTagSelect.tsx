@@ -1,9 +1,9 @@
 import { Select, SelectOption, SelectVariant } from '@patternfly/react-core';
 import React from 'react';
-import { IPullCountRecord } from './types';
+import { IPullCountTagRecord } from './types';
 
 interface IPullCountTagSelectProps {
-  data: IPullCountRecord[];
+  data: IPullCountTagRecord[];
   onTagsSelected(tags: string[]): void;
 }
 
@@ -60,7 +60,7 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
   }
 
   getTags(): string[] {
-    const allTags = this.props.data.map((record) => record.tags);
+    const allTags = this.props.data.map((record) => record.image_tags);
     return Array.from(new Set(([] as string[]).concat(...allTags))).sort().reverse();
   }
 
