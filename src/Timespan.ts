@@ -89,4 +89,10 @@ export class Timespan {
       }
     }
   }
+
+  toString(): string {
+    const start = moment.utc(this.intervals[0].start);
+    const end = moment.utc(this.intervals[this.intervals.length - 1].end);
+    return `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`;
+  }
 }

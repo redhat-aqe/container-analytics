@@ -15,8 +15,15 @@ describe('TimespanSelect component', () => {
 
   it('sets state on toggle', () => {
     const wrapper = shallow(<TimespanSelect onOptionSelected={callback}/>);
-    (wrapper.instance() as TimespanSelect).onChange('1');
-    expect(wrapper.state('value')).toEqual('1');
-    expect(callback).toBeCalledWith(Timespan.MONTHS_3);
+    (wrapper.instance() as TimespanSelect).onToggle(true);
+    expect(wrapper.state('isExpanded')).toEqual(true);
+  });
+
+  it('sets state on select', () => {
+    const wrapper = shallow(<TimespanSelect onOptionSelected={callback}/>);
+    const component = wrapper.instance() as TimespanSelect;
+    component.onSelect(null, component.options[3]);
+    expect(wrapper.state('isExpanded')).toEqual(false);
+    expect(wrapper.state('selected')).toEqual(component.options[3]);
   });
 });

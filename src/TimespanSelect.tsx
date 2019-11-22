@@ -1,47 +1,58 @@
-import { FormSelect, FormSelectOption } from '@patternfly/react-core';
+import { Select, SelectOption, SelectOptionObject } from '@patternfly/react-core';
 import React from 'react';
 import { Timespan } from './Timespan';
+import { TimespanSelectOption } from './TimespanSelectOption';
 
 interface ITimespanSelectProps {
   onOptionSelected(timepan: Timespan): void;
 }
 
 interface ITimespanSelectState {
-  value: string;
+  selected: TimespanSelectOption;
+  isExpanded: boolean;
 }
 
 export class TimespanSelect extends React.Component<ITimespanSelectProps, ITimespanSelectState> {
 
-  options = [
-    {timespan: Timespan.DAYS_30, label: 'Last 30 days'},
-    {timespan: Timespan.MONTHS_3, label: 'Last 3 months'},
-    {timespan: Timespan.MONTHS_6, label: 'Last 6 months'},
-    {timespan: Timespan.YEARS_1, label: 'Last year'},
+  options: TimespanSelectOption[] = [
+    new TimespanSelectOption(Timespan.DAYS_30, 'Last 30 days'),
+    new TimespanSelectOption(Timespan.MONTHS_3, 'Last 3 months'),
+    new TimespanSelectOption(Timespan.MONTHS_6, 'Last 6 months'),
+    new TimespanSelectOption(Timespan.YEARS_1, 'Last year'),
   ];
 
   constructor(props: ITimespanSelectProps) {
     super(props);
-    this.state = {value: '0'};
-    this.props.onOptionSelected(this.options[0].timespan);
+    const option = this.options[0];
+    this.state = {isExpanded: false, selected: option};
+    this.props.onOptionSelected(option.timespan);
   }
 
-  onChange = (value: string) => {
-    this.setState({value});
-    this.props.onOptionSelected(this.options[+value].timespan);
+  onSelect = (event: any, selection: SelectOptionObject) => {
+    const option = selection as TimespanSelectOption;
+    this.setState({selected: option, isExpanded: false});
+    this.props.onOptionSelected(option.timespan);
+  }
+
+  onToggle = (isExpanded: boolean) => {
+    this.setState({isExpanded});
   }
 
   render() {
     return (
-      <FormSelect
+      <Select
         aria-label="Timespan selection"
         className="rh-timespan-select"
-        value={this.state.value}
-        onChange={this.onChange}
+        selections={this.state.selected}
+        isExpanded={this.state.isExpanded}
+        onSelect={this.onSelect}
+        onToggle={this.onToggle}
+        width={200}
       >
         {this.options.map((option, index) => {
-          return <FormSelectOption key={index} value={index} label={option.label} />;
+          return <SelectOption key={index} value={option} />;
         })}
-      </FormSelect>
+      </Select>
     );
   }
 }
