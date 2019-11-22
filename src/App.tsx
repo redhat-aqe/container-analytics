@@ -1,5 +1,6 @@
 import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
 import React from 'react';
+import { CountryOverviewCard } from './CountryOverviewCard';
 import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
@@ -18,7 +19,16 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
   // TODO: remove this sample data
   data: IPullCountStatistics = {
-    by_customers: [],
+    by_customers: [
+      {download_date: '2019-10-14', country: 'United States', customer_name: 'foo', pull_count: 1},
+      {download_date: '2019-10-14', country: 'Canada', customer_name: 'foo', pull_count: 5},
+      {download_date: '2019-10-15', country: 'Mexico', customer_name: 'bar', pull_count: 6},
+      {download_date: '2019-10-16', country: 'France', customer_name: 'foo', pull_count: 2},
+      {download_date: '2019-10-17', country: 'China', customer_name: 'bar', pull_count: 1},
+      {download_date: '2019-10-18', country: 'United Kingdom', customer_name: 'baz', pull_count: 9},
+      {download_date: '2019-10-18', country: 'United States', customer_name: 'foo', pull_count: 4},
+      {download_date: '2019-10-19', country: 'United States', customer_name: 'foo', pull_count: 2},
+    ],
     by_tags: [
       {download_date: '2019-10-14', image_tags: ['8.0', '8.0-122'], pull_count: 1},
       {download_date: '2019-10-15', image_tags: ['latest', '8.0-154'], pull_count: 61},
@@ -99,7 +109,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
               <PullCountOverviewCard total_pulls={this.data.total_pulls} data={this.data.by_tags}/>
             </GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
-            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}>
+              <CountryOverviewCard total_countries={this.data.total_countries} data={this.data.by_customers}/>
+            </GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
             <GridItem span={12}>
               <PullCountCard data={this.data.by_tags} timespan={this.state.timespan}/>
