@@ -18,3 +18,8 @@ export interface IPullCountStatistics {
   total_customers: number;
   total_pulls: number;
 }
+
+export interface ILineChartPoint {
+  x: number;
+  y: number;
+}

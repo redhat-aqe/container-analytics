@@ -1,6 +1,7 @@
 import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
 import React from 'react';
 import { PullCountCard } from './PullCountCard';
+import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
 import { TimespanSelect } from './TimespanSelect';
 import { IPullCountStatistics } from './types';
@@ -94,7 +95,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <GridItem span={12}>
               <Title size="2xl">{this.state.timespan.toString()}</Title>
             </GridItem>
-            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}>
+              <PullCountOverviewCard total_pulls={this.data.total_pulls} data={this.data.by_tags}/>
+            </GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
