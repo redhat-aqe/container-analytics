@@ -1,6 +1,7 @@
 import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
+import { CustomerOverviewCard } from './CustomerOverviewCard';
 import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
@@ -112,7 +113,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <GridItem span={3}>
               <CountryOverviewCard total_countries={this.data.total_countries} data={this.data.by_customers}/>
             </GridItem>
-            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}>
+              <CustomerOverviewCard total_customers={this.data.total_customers} data={this.data.by_customers}/>
+            </GridItem>
             <GridItem span={12}>
               <PullCountCard data={this.data.by_tags} timespan={this.state.timespan}/>
             </GridItem>
