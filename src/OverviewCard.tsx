@@ -8,6 +8,7 @@ interface IOverviewCardProps {
   data: ILineChartPoint[];
   count: number;
   total: number;
+  title: string;
 }
 
 export class OverviewCard extends React.Component<IOverviewCardProps> {
@@ -27,7 +28,7 @@ export class OverviewCard extends React.Component<IOverviewCardProps> {
     return (
       <Card className="rh-overview-card">
         <CardHeader>
-          <Title size="lg">Pull count</Title>
+          <Title size="lg" className="rh-overview-card-title">{this.props.title}</Title>
         </CardHeader>
         <CardBody>
           <Grid>

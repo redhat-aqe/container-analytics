@@ -21,7 +21,7 @@ export class PullCountOverviewCard extends React.Component<IPullCountOverviewCar
   render() {
     const data = this.getChartData();
     const count = _.sumBy(data, (datum) => datum.y);
-    return <OverviewCard data={data} count={count} total={this.props.total_pulls}/>;
+    return <OverviewCard title="Pull count" data={data} count={count} total={this.props.total_pulls}/>;
   }
 
 }
