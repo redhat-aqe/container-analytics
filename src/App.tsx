@@ -2,6 +2,7 @@ import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/reac
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
 import { CustomerOverviewCard } from './CustomerOverviewCard';
+import { PullCountByTagCard } from './PullCountByTagCard';
 import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
@@ -119,7 +120,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <GridItem span={12}>
               <PullCountCard data={this.data.by_tags} timespan={this.state.timespan}/>
             </GridItem>
-            <GridItem span={6}><Card>TODO</Card></GridItem>
+            <GridItem span={6}>
+              <PullCountByTagCard data={this.data.by_tags}/>
+            </GridItem>
             <GridItem span={6}><Card>TODO</Card></GridItem>
             <GridItem span={12}><Card>TODO</Card></GridItem>
           </Grid>
