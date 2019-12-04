@@ -6,6 +6,7 @@
     "@patternfly/react-charts": "5.1.5",
     "@patternfly/react-core": "3.120.5",
     "@patternfly/react-icons": "^3.14.19",
+    "@patternfly/react-table": "^2.24.41",
     "@patternfly/react-tokens": "2.7.5",
     "@types/lodash": "^4.14.146",
     "@types/node": "12.7.2",

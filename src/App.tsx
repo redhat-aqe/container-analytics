@@ -7,6 +7,7 @@ import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
 import { TimespanSelect } from './TimespanSelect';
+import { TopConsumerCard } from './TopConsumerCard';
 import { IPullCountStatistics } from './types';
 
 interface IAppProps {
@@ -124,7 +125,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
               <PullCountByTagCard data={this.data.by_tags}/>
             </GridItem>
             <GridItem span={6}><Card>TODO</Card></GridItem>
-            <GridItem span={12}><Card>TODO</Card></GridItem>
+            <GridItem span={12}>
+              <TopConsumerCard data={this.data.by_customers}/>
+            </GridItem>
           </Grid>
         </PageSection>
       </Page>
