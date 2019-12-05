@@ -24,14 +24,21 @@ describe('PullCountStackChart component', () => {
   });
 
   it('formats ticks', () => {
-    const timespan = new Timespan(2, 'day', 'day');
+    let timespan = new Timespan(2, 'day', 'day');
     timespan.now = moment.utc('2019-01-01');
     timespan.intervals = timespan.createIntervals();
     const wrapper = shallow(<PullCountStackChart data={data} tags={['latest']} timespan={timespan}/>);
     const component = wrapper.instance() as PullCountStackChart;
     expect(component.formatTick(0)).toBe('30');
-    expect(component.formatTick(1)).toBe('');
+    expect(component.formatTick(1)).toBe('31');
+    expect(component.formatTick(2)).toBe('1');
     expect(component.formatTick(999)).toBe('');
+
+    timespan = new Timespan(2, 'month', 'week');
+    timespan.now = moment.utc('2019-01-01');
+    timespan.intervals = timespan.createIntervals();
+    wrapper.setProps({timespan});
+    expect(component.formatTick(0)).toBe('Nov 1');
   });
 
   it('formats labels', () => {

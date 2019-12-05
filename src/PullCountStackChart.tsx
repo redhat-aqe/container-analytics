@@ -8,6 +8,7 @@ import {
   chart_color_purple_300,
 } from '@patternfly/react-tokens';
 import * as _ from 'lodash';
+import moment from 'moment';
 import React from 'react';
 import { Timespan } from './Timespan';
 import { IPullCountTagRecord } from './types';
@@ -44,9 +45,8 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
       return '';
     }
 
-    // Only show alternating intervals for days to reduce clutter
-    if ((interval.unit === 'day') && (tick % 2 !== 0)) {
-      return '';
+    if (interval.unit === 'week') {
+      return moment.utc(interval.start).format('MMM D');
     }
 
     return interval.display;
@@ -134,7 +134,7 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
         width={600}
         themeColor={ChartThemeColor.multiUnordered}
       >
-        <ChartAxis tickValues={ticks} tickFormat={this.formatTick}/>
+        <ChartAxis tickValues={ticks} tickFormat={this.formatTick} fixLabelOverlap={true}/>
         <ChartAxis dependentAxis={true} showGrid={true}/>
         <ChartStack colorScale={this.colorScale}>
           {this.props.tags.map(
