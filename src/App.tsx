@@ -8,10 +8,11 @@ import { PullCountOverviewCard } from './PullCountOverviewCard';
 import { Timespan } from './Timespan';
 import { TimespanSelect } from './TimespanSelect';
 import { TopConsumerCard } from './TopConsumerCard';
-import { IPullCountStatistics } from './types';
+import { IPageViewStatistics, IPullCountStatistics } from './types';
 
 interface IAppProps {
-  data?: any[];
+  pullCountStats: IPullCountStatistics;
+  pageViewStats: IPageViewStatistics;
 }
 
 interface IAppState {
@@ -20,74 +21,6 @@ interface IAppState {
 
 export default class App extends React.Component<IAppProps, IAppState> {
 
-  // TODO: remove this sample data
-  data: IPullCountStatistics = {
-    by_customers: [
-      {download_date: '2019-10-14', country: 'United States', customer_name: 'foo', pull_count: 1},
-      {download_date: '2019-10-14', country: 'Canada', customer_name: 'foo', pull_count: 5},
-      {download_date: '2019-10-15', country: 'Mexico', customer_name: 'bar', pull_count: 6},
-      {download_date: '2019-10-16', country: 'France', customer_name: 'foo', pull_count: 2},
-      {download_date: '2019-10-17', country: 'China', customer_name: 'bar', pull_count: 1},
-      {download_date: '2019-10-18', country: 'United Kingdom', customer_name: 'baz', pull_count: 9},
-      {download_date: '2019-10-18', country: 'United States', customer_name: 'foo', pull_count: 4},
-      {download_date: '2019-10-19', country: 'United States', customer_name: 'foo', pull_count: 2},
-    ],
-    by_tags: [
-      {download_date: '2019-10-14', image_tags: ['8.0', '8.0-122'], pull_count: 1},
-      {download_date: '2019-10-15', image_tags: ['latest', '8.0-154'], pull_count: 61},
-      {download_date: '2019-10-15', image_tags: ['8.0-126'], pull_count: 1},
-      {download_date: '2019-10-16', image_tags: ['8.0', '8.0-122'], pull_count: 1},
-      {download_date: '2019-10-16', image_tags: ['latest', '8.0-154'], pull_count: 61},
-      {download_date: '2019-10-16', image_tags: ['8.0-126'], pull_count: 1},
-      {download_date: '2019-10-18', image_tags: ['8.0-122'], pull_count: 1},
-      {download_date: '2019-10-18', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-10-19', image_tags: ['8.0-199'], pull_count: 40},
-      {download_date: '2019-10-20', image_tags: ['8.0-129'], pull_count: 5},
-      {download_date: '2019-10-21', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-10-22', image_tags: ['8.0-122'], pull_count: 6},
-      {download_date: '2019-10-22', image_tags: ['8.0-126'], pull_count: 7},
-      {download_date: '2019-10-24', image_tags: ['8.0-199'], pull_count: 33},
-      {download_date: '2019-10-24', image_tags: ['8.0-2'], pull_count: 5},
-      {download_date: '2019-10-25', image_tags: ['8.0', '8.0-122'], pull_count: 1},
-      {download_date: '2019-10-26', image_tags: ['latest', '8.0-154'], pull_count: 61},
-      {download_date: '2019-10-26', image_tags: ['8.0-126'], pull_count: 1},
-      {download_date: '2019-10-26', image_tags: ['8.0-122'], pull_count: 1},
-      {download_date: '2019-10-26', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-10-27', image_tags: ['8.0-199'], pull_count: 40},
-      {download_date: '2019-10-29', image_tags: ['8.0-129'], pull_count: 5},
-      {download_date: '2019-10-30', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-10-30', image_tags: ['8.0-122'], pull_count: 6},
-      {download_date: '2019-10-31', image_tags: ['8.0-126'], pull_count: 7},
-      {download_date: '2019-11-01', image_tags: ['8.0-199'], pull_count: 33},
-      {download_date: '2019-11-01', image_tags: ['8.0-2'], pull_count: 5},
-      {download_date: '2019-11-02', image_tags: ['8.0', '8.0-122'], pull_count: 1},
-      {download_date: '2019-11-02', image_tags: ['latest', '8.0-154'], pull_count: 61},
-      {download_date: '2019-11-02', image_tags: ['8.0-126'], pull_count: 1},
-      {download_date: '2019-11-03', image_tags: ['8.0-122'], pull_count: 1},
-      {download_date: '2019-11-03', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-11-04', image_tags: ['8.0-199'], pull_count: 40},
-      {download_date: '2019-11-04', image_tags: ['8.0-129'], pull_count: 5},
-      {download_date: '2019-11-04', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-11-04', image_tags: ['8.0-122'], pull_count: 6},
-      {download_date: '2019-11-04', image_tags: ['8.0-126'], pull_count: 7},
-      {download_date: '2019-11-05', image_tags: ['8.0-199'], pull_count: 33},
-      {download_date: '2019-11-06', image_tags: ['8.0-2'], pull_count: 5},
-      {download_date: '2019-11-07', image_tags: ['8.0-126'], pull_count: 1},
-      {download_date: '2019-11-08', image_tags: ['8.0-122'], pull_count: 1},
-      {download_date: '2019-11-09', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-11-10', image_tags: ['8.0-199'], pull_count: 40},
-      {download_date: '2019-11-10', image_tags: ['8.0-129'], pull_count: 5},
-      {download_date: '2019-11-11', image_tags: ['8.0-154'], pull_count: 54},
-      {download_date: '2019-11-12', image_tags: ['8.0-122'], pull_count: 6},
-      {download_date: '2019-11-13', image_tags: ['8.0-126'], pull_count: 7},
-      {download_date: '2019-11-14', image_tags: ['8.0-199'], pull_count: 33},
-      {download_date: '2019-11-14', image_tags: ['8.0-2'], pull_count: 5},
-    ],
-    total_countries: 25,
-    total_customers: 50,
-    total_pulls: 9999,
-  };
-
   constructor(props: IAppProps) {
     super(props);
     this.state = {timespan: Timespan.DAYS_30};
@@ -95,9 +28,16 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
   onTimespanChange = (timespan: Timespan) => {
     this.setState({timespan});
+
+    window.dispatchEvent(new CustomEvent('rhAnalyticsTimespanChanged', {
+      bubbles: true,
+      composed: true,
+      detail: {days: timespan.days},
+    }));
   }
 
   render() {
+    const {pullCountStats} = this.props;
     return (
       <Page className="rh-container-analytics-root">
         <PageSection>
@@ -109,24 +49,33 @@ export default class App extends React.Component<IAppProps, IAppState> {
               <Title size="2xl">{this.state.timespan.toString()}</Title>
             </GridItem>
             <GridItem span={3}>
-              <PullCountOverviewCard total_pulls={this.data.total_pulls} data={this.data.by_tags}/>
+              <PullCountOverviewCard
+                total_pulls={pullCountStats.total_pulls}
+                data={pullCountStats.by_tags}
+              />
             </GridItem>
             <GridItem span={3}><Card>TODO</Card></GridItem>
             <GridItem span={3}>
-              <CountryOverviewCard total_countries={this.data.total_countries} data={this.data.by_customers}/>
+              <CountryOverviewCard
+                total_countries={pullCountStats.total_countries}
+                data={pullCountStats.by_customers}
+              />
             </GridItem>
             <GridItem span={3}>
-              <CustomerOverviewCard total_customers={this.data.total_customers} data={this.data.by_customers}/>
+              <CustomerOverviewCard
+                total_customers={pullCountStats.total_customers}
+                data={pullCountStats.by_customers}
+              />
             </GridItem>
             <GridItem span={12}>
-              <PullCountCard data={this.data.by_tags} timespan={this.state.timespan}/>
+              <PullCountCard data={pullCountStats.by_tags} timespan={this.state.timespan}/>
             </GridItem>
             <GridItem span={6}>
-              <PullCountByTagCard data={this.data.by_tags}/>
+              <PullCountByTagCard data={pullCountStats.by_tags}/>
             </GridItem>
             <GridItem span={6}><Card>TODO</Card></GridItem>
             <GridItem span={12}>
-              <TopConsumerCard data={this.data.by_customers}/>
+              <TopConsumerCard data={pullCountStats.by_customers}/>
             </GridItem>
           </Grid>
         </PageSection>

@@ -12,6 +12,12 @@ npm install
 
 ## Running the Development Server
 
+The development setup includes an [injection script](assets/inject.js) which
+pulls sample statistics from the Pyxis internal stage environment. Authentication
+is required to access this data. If you wish to use that utility script
+(the default) please refer Pyxis documentation to request access and ensure your
+browser is configured to authenticate properly.
+
 ```bash
 npm start
 ```

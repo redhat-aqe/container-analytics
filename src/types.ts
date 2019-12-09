@@ -19,6 +19,16 @@ export interface IPullCountStatistics {
   total_pulls: number;
 }
 
+export interface IPageViewRecord {
+  activity_date: string;
+  pageviews: number;
+}
+
+export interface IPageViewStatistics {
+  by_date: IPageViewRecord[];
+  total_pageviews: number;
+}
+
 export interface ILineChartPoint {
   x: number;
   y: number;
