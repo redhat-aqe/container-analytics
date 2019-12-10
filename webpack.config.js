@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const BG_IMAGES_DIRNAME = 'bgimages';
@@ -16,7 +17,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
       allChunks: true,
-    })
+    }),
+    new CopyWebpackPlugin([
+      {from: './assets/inject.js', to: 'inject.js'}
+    ])
   ],
   optimization: {
     minimize: true,

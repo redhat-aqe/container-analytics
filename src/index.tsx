@@ -2,11 +2,22 @@ import '@patternfly/react-core/dist/styles/base.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { IPageViewStatistics, IPullCountStatistics } from './types';
 
 class Analytics extends HTMLElement {
 
   mountPoint = document.createElement('div');
-  _data: any[] = [];
+  _pullCountStats: IPullCountStatistics = {
+    by_customers: [],
+    by_tags: [],
+    total_countries: 0,
+    total_customers: 0,
+    total_pulls: 0,
+  };
+  _pageViewStats: IPageViewStatistics = {
+    by_date: [],
+    total_pageviews: 0,
+  };
 
   constructor() {
     super();
@@ -31,19 +42,31 @@ class Analytics extends HTMLElement {
   }
 
   mount() {
-    ReactDOM.render(<App data={this.data} />, this.mountPoint);
+    ReactDOM.render(
+      <App pullCountStats={this.pullCountStats} pageViewStats={this.pageViewStats} />,
+      this.mountPoint,
+    );
   }
 
   unmount() {
     ReactDOM.unmountComponentAtNode(this);
   }
 
-  get data(): any[] {
-    return this._data;
+  get pullCountStats(): IPullCountStatistics {
+    return this._pullCountStats;
   }
 
-  set data(newValue) {
-    this._data = newValue;
+  set pullCountStats(newValue: IPullCountStatistics) {
+    this._pullCountStats = newValue;
+    this.update();
+  }
+
+  get pageViewStats(): IPageViewStatistics {
+    return this._pageViewStats;
+  }
+
+  set pageViewStats(newValue: IPageViewStatistics) {
+    this._pageViewStats = newValue;
     this.update();
   }
 }
