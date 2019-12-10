@@ -7,17 +7,17 @@ describe('Timespan', () => {
     const timespan = new Timespan(2, 'day', 'day');
     timespan.now = moment.utc('2019-01-02T01:01:01');
     const expected = [{
-      display: '31',
+      display: 'Dec 31',
       end: new Date('2018-12-31T23:59:59.999Z'),
       start: new Date('2018-12-31T00:00:00.000Z'),
       unit: 'day',
     }, {
-      display: '1',
+      display: 'Jan 1',
       end: new Date('2019-01-01T23:59:59.999Z'),
       start: new Date('2019-01-01T00:00:00.000Z'),
       unit: 'day',
     }, {
-      display: '2',
+      display: 'Jan 2',
       end: new Date('2019-01-02T01:01:01.000Z'),
       start: new Date('2019-01-02T00:00:00.000Z'),
       unit: 'day',

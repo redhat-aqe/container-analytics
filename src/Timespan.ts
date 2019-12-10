@@ -53,7 +53,7 @@ export class Timespan {
 
       let display;
       if (this.intervalUnit === 'day') {
-        display = `${intervalStart.date()}`;
+        display = `${intervalStart.format('MMM')} ${intervalStart.date()}`;
       } else if (this.intervalUnit === 'week') {
         display = `${intervalStart.format('MMM')} ${intervalStart.date()} - ` +
                   `${intervalEnd.format('MMM')} ${intervalEnd.date()}`;

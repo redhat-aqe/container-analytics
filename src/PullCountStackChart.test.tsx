@@ -39,6 +39,12 @@ describe('PullCountStackChart component', () => {
     timespan.intervals = timespan.createIntervals();
     wrapper.setProps({timespan});
     expect(component.formatTick(0)).toBe('Nov 1');
+
+    timespan = new Timespan(2, 'year', 'month');
+    timespan.now = moment.utc('2019-01-01');
+    timespan.intervals = timespan.createIntervals();
+    wrapper.setProps({timespan});
+    expect(component.formatTick(0)).toBe('Jan');
   });
 
   it('formats labels', () => {
