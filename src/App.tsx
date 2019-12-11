@@ -2,6 +2,7 @@ import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/reac
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
 import { CustomerOverviewCard } from './CustomerOverviewCard';
+import { PageViewCard } from './PageViewCard';
 import { PullCountByTagCard } from './PullCountByTagCard';
 import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
@@ -37,7 +38,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
   }
 
   render() {
-    const {pullCountStats} = this.props;
+    const {pullCountStats, pageViewStats} = this.props;
     return (
       <Page className="rh-container-analytics-root">
         <PageSection>
@@ -73,7 +74,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <GridItem span={6}>
               <PullCountByTagCard data={pullCountStats.by_tags}/>
             </GridItem>
-            <GridItem span={6}><Card>TODO</Card></GridItem>
+            <GridItem span={6}>
+              <PageViewCard data={pageViewStats.by_date} timespan={this.state.timespan}/>
+            </GridItem>
             <GridItem span={12}>
               <TopConsumerCard data={pullCountStats.by_customers}/>
             </GridItem>

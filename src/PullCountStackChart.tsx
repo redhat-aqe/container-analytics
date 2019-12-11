@@ -47,6 +47,8 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
 
     if (interval.unit === 'week') {
       return moment.utc(interval.start).format('MMM D');
+    } else if (interval.unit === 'day') {
+      return moment.utc(interval.start).format('D');
     }
 
     return interval.display;
