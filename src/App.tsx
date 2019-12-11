@@ -1,8 +1,9 @@
-import { Card, Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
+import { Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
 import { CustomerOverviewCard } from './CustomerOverviewCard';
 import { PageViewCard } from './PageViewCard';
+import { PageViewOverviewCard } from './PageViewOverviewCard';
 import { PullCountByTagCard } from './PullCountByTagCard';
 import { PullCountCard } from './PullCountCard';
 import { PullCountOverviewCard } from './PullCountOverviewCard';
@@ -55,7 +56,12 @@ export default class App extends React.Component<IAppProps, IAppState> {
                 data={pullCountStats.by_tags}
               />
             </GridItem>
-            <GridItem span={3}><Card>TODO</Card></GridItem>
+            <GridItem span={3}>
+              <PageViewOverviewCard
+                total_pageviews={pageViewStats.total_pageviews}
+                data={pageViewStats.by_date}
+              />
+            </GridItem>
             <GridItem span={3}>
               <CountryOverviewCard
                 total_countries={pullCountStats.total_countries}
