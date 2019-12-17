@@ -20,6 +20,8 @@ interface ICompanyTableState {
 
 export class CompanyTable extends React.Component<ICompanyTableProps, ICompanyTableState> {
 
+  readonly UNKNOWN = 'Unknown';
+
   constructor(props: ICompanyTableProps) {
     super(props);
     this.state = {
@@ -67,10 +69,18 @@ export class CompanyTable extends React.Component<ICompanyTableProps, ICompanyTa
     ));
     return _.map(Object.keys(grouped), (key) => {
       const records = grouped[key];
+      const customer = records[0].customer_name || this.UNKNOWN;
+      const country = records[0].country || this.UNKNOWN;
       return {
         cells: [
-          records[0].customer_name,
-          records[0].country,
+          {
+            props: {style: {fontStyle: customer === this.UNKNOWN ? 'italic' : 'normal'}},
+            title: customer,
+          },
+          {
+            props: {style: {fontStyle: country === this.UNKNOWN ? 'italic' : 'normal'}},
+            title: country,
+          },
           _.sumBy(records, (record) => record.pull_count),
         ],
       };
