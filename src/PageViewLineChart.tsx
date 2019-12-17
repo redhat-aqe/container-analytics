@@ -85,6 +85,7 @@ export class PageViewLineChart extends React.Component<IPageViewLineChartProps> 
         padding={{bottom: 50, left: 50, right: 50, top: 10}}
         width={600}
         domainPadding={{x: [25, 25], y: [0, 50]}}
+        minDomain={{y: 0}}
       >
         <ChartAxis tickValues={ticks} tickFormat={this.formatTick} fixLabelOverlap={true}/>
         <ChartAxis dependentAxis={true} showGrid={true}/>
