@@ -13,10 +13,10 @@ describe('TopConsumerCard component', () => {
     const wrapper = shallow(<TopConsumerCard data={[]}/>);
     const component = wrapper.instance() as TopConsumerCard;
     component.onSelect({itemId: 0});
-    expect(wrapper.find('.TODO').exists()).toBeTruthy();
+    expect(wrapper.find('CountryPullCounts').exists()).toBeTruthy();
     expect(wrapper.find('CompanyTable').exists()).toBeFalsy();
     component.onSelect({itemId: 1});
-    expect(wrapper.find('.TODO').exists()).toBeFalsy();
+    expect(wrapper.find('CountryPullCounts').exists()).toBeFalsy();
     expect(wrapper.find('CompanyTable').exists()).toBeTruthy();
   });
 

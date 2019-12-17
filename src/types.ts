@@ -1,7 +1,7 @@
 export interface IPullCountCustomerRecord {
   download_date: string;
-  country: string;
-  customer_name: string;
+  country: string | null;
+  customer_name: string | null;
   pull_count: number;
 }
 
@@ -32,4 +32,8 @@ export interface IPageViewStatistics {
 export interface ILineChartPoint {
   x: number;
   y: number;
+}
+
+export interface ICountryPullCounts {
+  [country: string]: number;
 }
