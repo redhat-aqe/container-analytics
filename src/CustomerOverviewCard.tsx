@@ -11,7 +11,10 @@ interface ICustomerOverviewCardProps {
 export class CustomerOverviewCard extends React.Component<ICustomerOverviewCardProps> {
 
   getChartData = (): ILineChartPoint[] => {
-    const byDate = _.groupBy(this.props.data, (datum) => new Date(datum.download_date).getTime());
+    const byDate = _.chain(this.props.data)
+      .filter((record) => !_.isNil(record.customer_name))
+      .groupBy((datum) => new Date(datum.download_date).getTime())
+      .value();
     const series = _.map(Object.keys(byDate), (key) => ({
       x: +key, y: _.uniq(_.map(byDate[key], (stat) => stat.customer_name)).length,
     }));
@@ -19,7 +22,10 @@ export class CustomerOverviewCard extends React.Component<ICustomerOverviewCardP
   }
 
   getCount = (): number => {
-    return _.uniq(_.map(this.props.data, (stat) => stat.customer_name)).length;
+    return _.chain(this.props.data)
+      .filter((record) => !_.isNil(record.customer_name))
+      .uniqBy((record) => record.customer_name)
+      .value().length;
   }
 
   render() {

@@ -11,7 +11,10 @@ interface ICountryOverviewCardProps {
 export class CountryOverviewCard extends React.Component<ICountryOverviewCardProps> {
 
   getChartData = (): ILineChartPoint[] => {
-    const byDate = _.groupBy(this.props.data, (datum) => new Date(datum.download_date).getTime());
+    const byDate = _.chain(this.props.data)
+      .filter((record) => !_.isNil(record.country))
+      .groupBy((datum) => new Date(datum.download_date).getTime())
+      .value();
     const series = _.map(Object.keys(byDate), (key) => ({
       x: +key, y: _.uniq(_.map(byDate[key], (stat) => stat.country)).length,
     }));
@@ -19,7 +22,10 @@ export class CountryOverviewCard extends React.Component<ICountryOverviewCardPro
   }
 
   getCount = (): number => {
-    return _.uniq(_.map(this.props.data, (stat) => stat.country)).length;
+    return _.chain(this.props.data)
+      .filter((record) => !_.isNil(record.country))
+      .uniqBy((record) => record.country)
+      .value().length;
   }
 
   render() {
