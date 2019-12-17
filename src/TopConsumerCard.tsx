@@ -1,7 +1,8 @@
-import { Card, CardBody, CardHeader, Flex, FlexItem, Nav, NavItem, NavList, NavVariants, Title } from '@patternfly/react-core';
+import { Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers, Nav, NavItem, NavList, NavVariants, Title } from '@patternfly/react-core';
 import { global_BorderColor_100, global_BorderWidth_sm, global_spacer_md } from '@patternfly/react-tokens';
 import React from 'react';
 import { CompanyTable } from './CompanyTable';
+import { CountryPullCounts } from './CountryPullCounts';
 import { IPullCountCustomerRecord } from './types';
 
 interface ITopConsumerCardProps {
@@ -23,7 +24,7 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
 
   constructor(props: ITopConsumerCardProps) {
     super(props);
-    this.state = {activeItem: 1};
+    this.state = {activeItem: 0};
   }
 
   onSelect = (result: any) => {
@@ -32,7 +33,7 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
 
   render() {
     const tabComponent = (this.state.activeItem === 0)
-      ? <div className="TODO">TODO</div>
+      ? <CountryPullCounts data={this.props.data}/>
       : <CompanyTable data={this.props.data}/>;
 
     return (
@@ -42,7 +43,7 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
             <FlexItem>
               <Title size="lg">Top consumers</Title>
             </FlexItem>
-            <FlexItem breakpointMods={[{modifier: 'align-right', breakpoint: 'sm'}]}>
+            <FlexItem breakpointMods={[{modifier: FlexItemModifiers['align-right']}]}>
               TODO
             </FlexItem>
           </Flex>
