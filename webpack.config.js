@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 const BG_IMAGES_DIRNAME = 'bgimages';
@@ -20,7 +21,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {from: './assets/inject.js', to: 'inject.js'}
-    ])
+    ]),
+    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimize: true,
@@ -29,7 +31,8 @@ module.exports = {
         exclude: './src/constants.tsx'
       }),
       new OptimizeCSSAssetsPlugin({}),
-    ]
+    ],
+    sideEffects: true,
   },
   entry: "./src/index.tsx",
 	output: {
