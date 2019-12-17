@@ -10,6 +10,7 @@ describe('CountryOverviewCard component', () => {
     {download_date: '2018-12-31', customer_name: 'foo', country: 'B', pull_count: 2},
     {download_date: '2018-12-31', customer_name: 'foo', country: 'C', pull_count: 1},
     {download_date: '2018-12-30', customer_name: 'foo', country: 'A', pull_count: 3},
+    {download_date: '2018-12-30', customer_name: null, country: 'A', pull_count: 3},
   ];
 
   it('constructs chart data', () => {
