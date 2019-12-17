@@ -50,25 +50,25 @@ export default class App extends React.Component<IAppProps, IAppState> {
             <GridItem span={12}>
               <Title size="2xl">{this.state.timespan.toString()}</Title>
             </GridItem>
-            <GridItem span={3}>
+            <GridItem sm={6} lg={3}>
               <PullCountOverviewCard
                 total_pulls={pullCountStats.total_pulls}
                 data={pullCountStats.by_tags}
               />
             </GridItem>
-            <GridItem span={3}>
+            <GridItem sm={6} lg={3}>
               <PageViewOverviewCard
                 total_pageviews={pageViewStats.total_pageviews}
                 data={pageViewStats.by_date}
               />
             </GridItem>
-            <GridItem span={3}>
+            <GridItem sm={6} lg={3}>
               <CountryOverviewCard
                 total_countries={pullCountStats.total_countries}
                 data={pullCountStats.by_customers}
               />
             </GridItem>
-            <GridItem span={3}>
+            <GridItem sm={6} lg={3}>
               <CustomerOverviewCard
                 total_customers={pullCountStats.total_customers}
                 data={pullCountStats.by_customers}
