@@ -14,4 +14,9 @@ describe('PullCountByTagCard component', () => {
     (wrapper.instance() as PullCountByTagCard).onTagsSelected(['8.0']);
     expect(wrapper.state('tags')).toEqual(['8.0']);
   });
+
+  it('has a tooltip', () => {
+    const wrapper = shallow(<PullCountByTagCard data={[]} />);
+    expect(wrapper.find('.rh-pull-count-by-tag-tooltip').exists()).toBeTruthy();
+  });
 });

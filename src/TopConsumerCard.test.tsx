@@ -20,4 +20,8 @@ describe('TopConsumerCard component', () => {
     expect(wrapper.find('CompanyTable').exists()).toBeTruthy();
   });
 
+  it('has a tooltip', () => {
+    const wrapper = shallow(<TopConsumerCard data={[]}/>);
+    expect(wrapper.find('.rh-top-consumers-card-tooltip').exists()).toBeTruthy();
+  });
 });

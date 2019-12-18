@@ -8,4 +8,9 @@ describe('PageViewCard component', () => {
     const wrapper = shallow(<PageViewCard data={[]} timespan={Timespan.MONTHS_6} />);
     expect(wrapper.find('.rh-page-views-card').exists()).toBeTruthy();
   });
+
+  it('has a tooltip', () => {
+    const wrapper = shallow(<PageViewCard data={[]} timespan={Timespan.MONTHS_6} />);
+    expect(wrapper.find('.rh-page-views-card-tooltip').exists()).toBeTruthy();
+  });
 });
