@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, Flex, FlexItem, Title, Tooltip, TooltipPosition } from '@patternfly/react-core';
 import { InfoCircleIcon } from '@patternfly/react-icons';
+import { chart_color_blue_100 } from '@patternfly/react-tokens';
 import React from 'react';
 import { PageViewLineChart } from './PageViewLineChart';
 import { Timespan } from './Timespan';
@@ -30,7 +31,7 @@ export class PageViewCard extends React.Component<IPageViewCardProps> {
                 position={TooltipPosition.top}
                 content="Displays daily views of the repository and any detail pages in the Container Catalog."
               >
-              <InfoCircleIcon color={'#8BC1F7'}/>
+                <InfoCircleIcon color={chart_color_blue_100.value}/>
               </Tooltip>
             </FlexItem>
           </Flex>

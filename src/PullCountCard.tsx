@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, Flex, FlexItem, Title, Tooltip, TooltipPosition } from '@patternfly/react-core';
 import { InfoCircleIcon } from '@patternfly/react-icons';
+import { chart_color_blue_100 } from '@patternfly/react-tokens';
 import React from 'react';
 import { PullCountStackChart } from './PullCountStackChart';
 import { PullCountTagSelect } from './PullCountTagSelect';
@@ -41,7 +42,7 @@ export class PullCountCard extends React.Component<IPullCountCardProps, IPullCou
                 content="Discover which tags users are downloading from the registry each day, viewing up to 5 at a time.
                 Image polling attempts are excluded and do not count as pulls."
               >
-              <InfoCircleIcon color={'#8BC1F7'}/>
+                <InfoCircleIcon color={chart_color_blue_100.value}/>
               </Tooltip>
             </FlexItem>
             <FlexItem>
