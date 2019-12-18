@@ -1,5 +1,7 @@
-import { Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers, Nav, NavItem, NavList, NavVariants, Title } from '@patternfly/react-core';
-import { global_BorderColor_100, global_BorderWidth_sm, global_spacer_md } from '@patternfly/react-tokens';
+import { Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers, Nav, NavItem, NavList, NavVariants, Title,
+         Tooltip, TooltipPosition } from '@patternfly/react-core';
+import { InfoCircleIcon } from '@patternfly/react-icons';
+import { chart_color_blue_100, global_BorderColor_100, global_BorderWidth_sm, global_spacer_md } from '@patternfly/react-tokens';
 import React from 'react';
 import { CompanyTable } from './CompanyTable';
 import { CountryPullCounts } from './CountryPullCounts';
@@ -42,6 +44,16 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
           <Flex>
             <FlexItem>
               <Title size="lg">Top consumers</Title>
+            </FlexItem>
+            <FlexItem>
+              <Tooltip
+                className="rh-top-consumers-card-tooltip"
+                position={TooltipPosition.top}
+                content="A consumer is any authenticated user pulling images with a Red Hat account.
+                View top consumers based on originating country, company name, or export the full CSV file."
+              >
+                <InfoCircleIcon color={chart_color_blue_100.value}/>
+              </Tooltip>
             </FlexItem>
             <FlexItem breakpointMods={[{modifier: FlexItemModifiers['align-right']}]}>
               TODO
