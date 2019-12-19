@@ -1,8 +1,9 @@
-import { Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers, Nav, NavItem, NavList, NavVariants, Title,
-         Tooltip, TooltipPosition } from '@patternfly/react-core';
+import { Button, Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers,
+         Nav, NavItem, NavList, NavVariants, Title, Tooltip, TooltipPosition } from '@patternfly/react-core';
 import { InfoCircleIcon } from '@patternfly/react-icons';
 import { chart_color_blue_100, global_BorderColor_100, global_BorderWidth_sm, global_spacer_md } from '@patternfly/react-tokens';
 import React from 'react';
+import { CSVLink } from 'react-csv';
 import { CompanyTable } from './CompanyTable';
 import { CountryPullCounts } from './CountryPullCounts';
 import { IPullCountCustomerRecord } from './types';
@@ -56,7 +57,9 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
               </Tooltip>
             </FlexItem>
             <FlexItem breakpointMods={[{modifier: FlexItemModifiers['align-right']}]}>
-              TODO
+              <CSVLink data={this.props.data} filename="export.csv">
+                <Button variant="secondary" className="btn-export-csv">Export to CSV</Button>
+              </CSVLink>
             </FlexItem>
           </Flex>
         </CardHeader>

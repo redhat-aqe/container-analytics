@@ -24,4 +24,9 @@ describe('TopConsumerCard component', () => {
     const wrapper = shallow(<TopConsumerCard data={[]}/>);
     expect(wrapper.find('.rh-top-consumers-card-tooltip').exists()).toBeTruthy();
   });
+
+  it('has a an export button', () => {
+    const wrapper = shallow(<TopConsumerCard data={[]}/>);
+    expect(wrapper.find('.btn-export-csv').exists()).toBeTruthy();
+  });
 });
