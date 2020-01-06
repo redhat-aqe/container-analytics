@@ -26,7 +26,7 @@ export class OverviewCard extends React.Component<IOverviewCardProps> {
 
   render() {
     return (
-      <Card className="rh-overview-card">
+      <Card className="rh-overview-card pf-u-h-100">
         <CardHeader>
           <Title size="lg" className="rh-overview-card-title">{this.props.title}</Title>
         </CardHeader>

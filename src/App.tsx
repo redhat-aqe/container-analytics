@@ -1,4 +1,5 @@
 import { Grid, GridItem, Page, PageSection, Title } from '@patternfly/react-core';
+import '@patternfly/react-styles/css/utilities/Sizing/sizing.css';
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
 import { CustomerOverviewCard } from './CustomerOverviewCard';
