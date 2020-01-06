@@ -27,7 +27,7 @@ export class PullCountByTagCard extends React.Component<IPullCountByTagCardProps
 
   render() {
     return (
-      <Card className="rh-pull-count-by-tag-card">
+      <Card className="rh-pull-count-by-tag-card pf-u-h-100">
         <CardHeader>
           <Flex>
             <FlexItem>

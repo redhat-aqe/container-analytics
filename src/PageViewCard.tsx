@@ -19,7 +19,7 @@ export class PageViewCard extends React.Component<IPageViewCardProps> {
 
   render() {
     return (
-      <Card className="rh-page-views-card">
+      <Card className="rh-page-views-card pf-u-h-100">
         <CardHeader>
           <Flex>
             <FlexItem>
