@@ -1,0 +1,12 @@
+.rh-pull-count-stack-tooltip {
+  background: black;
+  color: white;
+  position: absolute;
+  overflow: visible;
+  text-align: center;
+}
+
+.rh-pull-count-stack-tooltip-content {
+  font-size: 10px;
+  padding: 5px;
+}

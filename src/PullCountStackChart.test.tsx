@@ -50,7 +50,7 @@ describe('PullCountStackChart component', () => {
   it('formats labels', () => {
     const wrapper = shallow(<PullCountStackChart data={data} tags={['latest']} timespan={Timespan.MONTHS_6}/>);
     const component = wrapper.instance() as PullCountStackChart;
-    expect(component.formatLabel({datum: {name: 'latest', y: 5}})).toBe('latest: 5 pulls');
+    expect(component.formatLabel({datum: {name: 'latest', y: 5}})).toBe('');
   });
 
   it('contructs chart data', () => {
