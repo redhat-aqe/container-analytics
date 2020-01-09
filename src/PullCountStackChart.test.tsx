@@ -47,12 +47,6 @@ describe('PullCountStackChart component', () => {
     expect(component.formatTick(0)).toBe('Jan');
   });
 
-  it('formats labels', () => {
-    const wrapper = shallow(<PullCountStackChart data={data} tags={['latest']} timespan={Timespan.MONTHS_6}/>);
-    const component = wrapper.instance() as PullCountStackChart;
-    expect(component.formatLabel({datum: {name: 'latest', y: 5}})).toBe('');
-  });
-
   it('contructs chart data', () => {
     const timespan = new Timespan(10, 'day', 'day');
     timespan.now = moment.utc('2019-01-01');

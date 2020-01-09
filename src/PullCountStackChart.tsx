@@ -56,15 +56,6 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
   }
 
   /**
-   * Format label tooltips
-   * Required to return a emtpy string as the labels prop is required
-   * to display the custom tooltip.
-   */
-  formatLabel = (point: any): string => {
-    return '';
-  }
-
-  /**
    * Creates the stacked bar data structure.
    */
   getBars(): {[tag: string]: Array<{name: string, x: number, y: number}>} {
@@ -126,9 +117,10 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
       />
     );
 
+    /* istanbul ignore next */
     const container = (
       <ChartVoronoiContainer
-        labels={this.formatLabel}
+        labels={() => ''} // tslint:disable-line jsx-no-lambda
         constrainToVisibleArea={true}
         className="rh-pull-count-stack-chart"
         voronoiDimension="x"
