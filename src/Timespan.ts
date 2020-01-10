@@ -6,6 +6,7 @@ interface ITimespanInterval {
   start: Date;
   end: Date;
   display: string;
+  displayLong: string;
   unit: TimespanUnit;
 }
 
@@ -52,17 +53,23 @@ export class Timespan {
       }
 
       let display;
+      let displayLong;
       if (this.intervalUnit === 'day') {
         display = `${intervalStart.format('MMM')} ${intervalStart.date()}`;
+        displayLong = `${intervalStart.format('MMM')} ${intervalStart.date()} ${intervalStart.format('YYYY')}`;
       } else if (this.intervalUnit === 'week') {
         display = `${intervalStart.format('MMM')} ${intervalStart.date()} - ` +
                   `${intervalEnd.format('MMM')} ${intervalEnd.date()}`;
+        displayLong = `${intervalStart.format('MMM')} ${intervalStart.date()} ${intervalStart.format('YYYY')} - ` +
+                      `${intervalEnd.format('MMM')} ${intervalEnd.date()} ${intervalEnd.format('YYYY')}`;
       } else {
         display = intervalStart.format('MMM');
+        displayLong = intervalStart.format('MMM YYYY');
       }
 
       intervals.push({
         display,
+        displayLong,
         end: intervalEnd.toDate(),
         start: intervalStart.toDate(),
         unit: this.intervalUnit,

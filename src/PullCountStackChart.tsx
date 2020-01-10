@@ -1,4 +1,4 @@
-import { Chart, ChartAxis, ChartBar, ChartStack, ChartThemeColor, ChartVoronoiContainer } from '@patternfly/react-charts';
+import { Chart, ChartAxis, ChartBar, ChartStack, ChartThemeColor, ChartTooltip, ChartVoronoiContainer } from '@patternfly/react-charts';
 import { EmptyState, EmptyStateBody, EmptyStateVariant, Title } from '@patternfly/react-core';
 import {
   chart_color_blue_300,
@@ -10,6 +10,7 @@ import {
 import * as _ from 'lodash';
 import moment from 'moment';
 import React from 'react';
+import { PullCountStackTooltip } from './PullCountStackTooltip';
 import { Timespan } from './Timespan';
 import { IPullCountTagRecord } from './types';
 
@@ -52,13 +53,6 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
     }
 
     return interval.display;
-  }
-
-  /**
-   * Format label tooltips
-   */
-  formatLabel = (point: any): string => {
-    return `${point.datum.name}: ${point.datum.y} pulls`;
   }
 
   /**
@@ -112,15 +106,25 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
     const bars = this.getBars();
     const ticks = [...this.props.timespan.intervals.keys()];
 
-    const legendData = this.props.tags.map((tag, index) => (
+    const legendData = _.sortBy(this.props.tags.map((tag, index) => (
       {name: tag, symbol: {fill: this.colorScale[index]}}
-    ));
+    )), (e) => e.name);
 
+    const labelComponent = (
+      <ChartTooltip
+        flyoutComponent={(
+          <PullCountStackTooltip timespan={this.props.timespan} bars={this.getBars()}/>)}
+      />
+    );
+
+    /* istanbul ignore next */
     const container = (
       <ChartVoronoiContainer
-        labels={this.formatLabel}
+        labels={() => ''} // tslint:disable-line jsx-no-lambda
         constrainToVisibleArea={true}
         className="rh-pull-count-stack-chart"
+        voronoiDimension="x"
+        labelComponent={labelComponent}
       />
     );
 
