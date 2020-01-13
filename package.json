@@ -1,7 +1,8 @@
 {
-  "name": "redhat-container-analytics",
+  "name": "@redhat-exd/container-analytics",
   "version": "0.1.0",
-  "private": true,
+  "main": "dist/analytics.js",
+  "license": "MIT",
   "dependencies": {
     "@patternfly/react-charts": "^5.2.2",
     "@patternfly/react-core": "^3.124.1",
@@ -41,6 +42,14 @@
       "last 1 safari version"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:redhat-aqe/container-analytics.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["dist"],
   "devDependencies": {
     "@types/d3-scale": "^2.1.1",
     "@types/enzyme": "^3.10.3",
