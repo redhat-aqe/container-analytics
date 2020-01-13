@@ -2,6 +2,7 @@
   "name": "@redhat-exd/redhat-container-analytics",
   "version": "0.1.0",
   "main": "dist/analytics.js",
+  "license": "MIT",
   "dependencies": {
     "@patternfly/react-charts": "^5.2.2",
     "@patternfly/react-core": "^3.124.1",
