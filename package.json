@@ -1,5 +1,5 @@
 {
-  "name": "@redhat-exd/redhat-container-analytics",
+  "name": "@redhat-exd/container-analytics",
   "version": "0.1.0",
   "main": "dist/analytics.js",
   "license": "MIT",
@@ -45,6 +45,9 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:redhat-aqe/container-analytics.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": ["dist"],
   "devDependencies": {
