@@ -14,7 +14,8 @@ deploy:
   on:
     tags: true
   provider: npm
-  skip_cleanup: true
+  edge: true
+  cleanup: false
   api_key:
     secure: mBjIl6K+VtkTk92DoWjSAjedBTXYwBo8qkxAOeuY2kHyai8XRsEkBpF+YpCxuf7XQaRllpJoSA+2I73VjZklKAOgdEou2+rqu08Lkluzy8WaihYyMBcXUmpe72dD/Iiz4W7+v1GCa+mnNTesYTH1+1g3Vn2KXfDb4E/rrZjjWwpnbPxUvr3jXobJjfsFIymQTMG0GVlZrPtcUi9f+rmTMnHfYs7sGldz+wEWtFGBre/IciQPdc76xOi0JgzPttr/u9JzRcPhA551GsvOmsFmjDT2jMKLoYFbNoIKx8Nn+F1vQydY3ISbsArRCP8maXsG4ypR++jLkz6esEGPTPN0CnGuD977y/Mbe6YE5IMprChP+fc1rM7eNWsqQ3xD4uRExSstbFf6DoXxHUeQq+QVkb1zB/D0umIZIz5HPUVrVNYAndb87OSdBHfAjAY8fDReZogDrAxKW6Bnb25o6wVjqyPqK867B/3tDSRZ02N3/20s1AwlQzJO0xUVk2iPw2Qms4acGwiJKXGhbZkgEuH3kvRgz1bdf4FvjoWl8hG+EJzsoUseTkBjJNxEPgWXk67EyElqKP+gcOKeKhrmIEHgIN58wAJgKYy9HemoZEPUwJfaLdrxuC1kwM8Jm/j3IPn3GSTPvKgfupnevqaitZD7kKAo4iO4n/nJDV7J9Yk+CJo=
   email:
