@@ -21,10 +21,10 @@ class Analytics extends HTMLElement {
 
   constructor() {
     super();
-    this.appendChild(this.mountPoint);
   }
 
   connectedCallback() {
+    this.appendChild(this.mountPoint);
     this.mount();
   }
 
