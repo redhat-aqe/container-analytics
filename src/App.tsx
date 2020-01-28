@@ -3,6 +3,7 @@ import '@patternfly/react-styles/css/utilities/Sizing/sizing.css';
 import React from 'react';
 import { CountryOverviewCard } from './CountryOverviewCard';
 import { CustomerOverviewCard } from './CustomerOverviewCard';
+import { LoadingOverlay } from './LoadingOverlay';
 import { PageViewCard } from './PageViewCard';
 import { PageViewOverviewCard } from './PageViewOverviewCard';
 import { PullCountByTagCard } from './PullCountByTagCard';
@@ -20,17 +21,18 @@ interface IAppProps {
 
 interface IAppState {
   timespan: Timespan;
+  isLoading: boolean;
 }
 
 export default class App extends React.Component<IAppProps, IAppState> {
 
   constructor(props: IAppProps) {
     super(props);
-    this.state = {timespan: Timespan.DAYS_30};
+    this.state = {timespan: Timespan.DAYS_30, isLoading: true};
   }
 
   onTimespanChange = (timespan: Timespan) => {
-    this.setState({timespan});
+    this.setState({timespan, isLoading: true});
 
     window.dispatchEvent(new CustomEvent('rhAnalyticsTimespanChanged', {
       bubbles: true,
@@ -39,10 +41,18 @@ export default class App extends React.Component<IAppProps, IAppState> {
     }));
   }
 
+  componentDidUpdate(prevProps: IAppProps) {
+    if (prevProps !== this.props) {
+      this.setState({isLoading: false});
+    }
+  }
+
   render() {
     const {pullCountStats, pageViewStats} = this.props;
+    const loadingState = this.state.isLoading ? <LoadingOverlay/> : <span className="no-overlay"/>;
     return (
       <Page className="rh-container-analytics-root">
+        {loadingState}
         <PageSection>
           <Grid gutter="md">
             <GridItem span={12}>
