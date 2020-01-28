@@ -29,4 +29,22 @@ describe('App component', () => {
     (wrapper.instance() as App).onTimespanChange(Timespan.YEARS_1);
     expect(wrapper.state('timespan')).toEqual(Timespan.YEARS_1);
   });
+
+  it('updates states on prop updates', () => {
+    const wrapper = shallow(<App pullCountStats={pullCountStats} pageViewStats={pageViewStats}/>);
+    const spy = spyOn(wrapper, 'setState');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.setProps({pullCountStats, pageViewStats});
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should hide the overlay conditionally', () => {
+    const wrapper = shallow(<App pullCountStats={pullCountStats} pageViewStats={pageViewStats}/>);
+    const componentInstance = (wrapper.instance() as App);
+    expect(wrapper.find('.no-overlay').exists()).toBeFalsy();
+    componentInstance.setState({ isLoading: false });
+    wrapper.update();
+    expect(wrapper.state('isLoading')).toEqual(false);
+    expect(wrapper.find('.no-overlay').exists()).toBeTruthy();
+  });
 });
