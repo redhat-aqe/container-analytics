@@ -11,6 +11,7 @@ interface IPullCountTagSelectState {
   placeholderText: string;
   isExpanded: boolean;
   selected: string[];
+  initialized: boolean;
 }
 
 export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps, IPullCountTagSelectState> {
@@ -21,6 +22,7 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
     super(props);
 
     this.state = {
+      initialized: false,
       isExpanded: false,
       placeholderText: this.DEFAULT_PLACEHOLDER_TEXT,
       selected: [],
@@ -31,6 +33,16 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
     const tags = this.getTags();
     if (tags.length > 0) {
       this.onSelect(null, tags.includes('latest') ? 'latest' : tags[0]);
+    }
+  }
+
+  componentDidUpdate() {
+    const tags = this.getTags();
+    if (tags.length > 0 && !this.state.initialized) {
+      const filtered = tags.filter((item) => item !== 'latest');
+      const selected = tags.length === 1 ? tags : filtered.slice(0, 2);
+      this.setState({placeholderText: 'Tags selected', selected, initialized: true});
+      this.props.onTagsSelected(selected);
     }
   }
 
