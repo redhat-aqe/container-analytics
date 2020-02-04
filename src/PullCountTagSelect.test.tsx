@@ -28,9 +28,16 @@ describe('PullCountTagSelect component', () => {
   });
 
   it('defaults to latest selected', () => {
-    const latestData = [{download_date: '01-01-2019', image_tags: ['latest'], pull_count: 1}, ...data];
+    const latestData = [{download_date: '01-01-2019', image_tags: ['latest'], pull_count: 1}];
     const wrapper = shallow(<PullCountTagSelect data={latestData} onTagsSelected={callback} />);
     expect(wrapper.state('selected')).toEqual(['latest']);
+    expect(wrapper.state('placeholderText')).toEqual('Tags selected');
+  });
+
+  it('defaults to last two digits selected for multistream', () => {
+    const latestData = [{download_date: '01-01-2019', image_tags: ['latest'], pull_count: 1}, ...data];
+    const wrapper = shallow(<PullCountTagSelect data={latestData} onTagsSelected={callback} />);
+    expect(wrapper.state('selected')).toEqual(['6.0', '5.0']);
     expect(wrapper.state('placeholderText')).toEqual('Tags selected');
   });
 
@@ -43,9 +50,9 @@ describe('PullCountTagSelect component', () => {
   it('can add/remove a selection', () => {
     const wrapper = shallow(<PullCountTagSelect data={data} onTagsSelected={callback} />);
     const component = wrapper.instance() as PullCountTagSelect;
-    expect(wrapper.state('selected')).toEqual(['6.0']);
+    expect(wrapper.state('selected')).toEqual(['6.0', '5.0']);
     component.onSelect(null, '6.0');
-    expect(wrapper.state('selected')).toEqual([]);
+    component.onSelect(null, '5.0');
     expect(callback).toBeCalledWith([]);
     component.onSelect(null, '1.0');
     expect(callback).toBeCalledWith(['1.0']);
@@ -54,7 +61,6 @@ describe('PullCountTagSelect component', () => {
   it('only allows up to 5 selections', () => {
     const wrapper = shallow(<PullCountTagSelect data={data} onTagsSelected={callback} />);
     const component = wrapper.instance() as PullCountTagSelect;
-    component.onSelect(null, '5.0');
     component.onSelect(null, '4.0');
     component.onSelect(null, '3.0');
     component.onSelect(null, '2.0');
