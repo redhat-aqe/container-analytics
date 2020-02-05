@@ -36,12 +36,17 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: IPullCountTagSelectProps) {
     const tags = this.getTags();
     if (tags.length > 0 && !this.state.initialized) {
       const filtered = tags.filter((item) => item !== 'latest');
       const selected = tags.length === 1 ? tags : filtered.slice(0, 2);
       this.setState({placeholderText: 'Tags selected', selected, initialized: true});
+      this.props.onTagsSelected(selected);
+    } else if (this.state.initialized && prevProps.data !== this.props.data) {
+      // On timespan change new data is pulled, unselect non-existent tags.
+      const selected = this.state.selected.filter((item) => tags.includes(item));
+      this.setState({selected});
       this.props.onTagsSelected(selected);
     }
   }
