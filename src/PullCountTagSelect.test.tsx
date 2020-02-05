@@ -69,4 +69,11 @@ describe('PullCountTagSelect component', () => {
     expect(wrapper.state('placeholderText')).toEqual('Maximum tags selected');
   });
 
+  it('unselects non-existent tags', () => {
+    const latestData = [{download_date: '01-01-2019', image_tags: ['6.0'], pull_count: 1}];
+    const wrapper = shallow(<PullCountTagSelect data={data} onTagsSelected={callback} />);
+    expect(wrapper.state('selected')).toEqual(['6.0', '5.0']);
+    wrapper.setProps({data: latestData});
+    expect(wrapper.state('selected')).toEqual(['6.0']);
+  });
 });
