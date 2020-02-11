@@ -2,6 +2,7 @@ import { Button, Card, CardBody, CardHeader, Flex, FlexItem, FlexItemModifiers,
          Nav, NavItem, NavList, NavVariants, Title, Tooltip, TooltipPosition } from '@patternfly/react-core';
 import { InfoCircleIcon } from '@patternfly/react-icons';
 import { chart_color_blue_100, global_BorderColor_100, global_BorderWidth_sm, global_spacer_md } from '@patternfly/react-tokens';
+import moment from 'moment';
 import React from 'react';
 import { CSVLink } from 'react-csv';
 import { CompanyTable } from './CompanyTable';
@@ -39,6 +40,8 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
       ? <CountryPullCounts data={this.props.data}/>
       : <CompanyTable data={this.props.data}/>;
 
+    const filename = `analytics_${moment().format('YYYYMMDDTHHMMSS')}.csv`;
+
     return (
       <Card className="rh-top-consumers-card">
         <CardHeader>
@@ -57,7 +60,7 @@ export class TopConsumerCard extends React.Component<ITopConsumerCardProps, ITop
               </Tooltip>
             </FlexItem>
             <FlexItem breakpointMods={[{modifier: FlexItemModifiers['align-right']}]}>
-              <CSVLink data={this.props.data} filename="export.csv">
+              <CSVLink data={this.props.data} filename={filename}>
                 <Button variant="secondary" className="btn-export-csv">Export to CSV</Button>
               </CSVLink>
             </FlexItem>
