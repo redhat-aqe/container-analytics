@@ -39,8 +39,7 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
   componentDidUpdate(prevProps: IPullCountTagSelectProps) {
     const tags = this.getTags();
     if (tags.length > 0 && !this.state.initialized) {
-      const filtered = tags.filter((item) => item !== 'latest');
-      const selected = tags.length === 1 ? tags : filtered.slice(0, 2);
+      const selected = tags.length === 1 ? tags : tags.slice(0, 2);
       this.setState({placeholderText: 'Tags selected', selected, initialized: true});
       this.props.onTagsSelected(selected);
     } else if (this.state.initialized && prevProps.data !== this.props.data) {
@@ -78,7 +77,8 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
 
   getTags(): string[] {
     const allTags = this.props.data.map((record) => record.image_tags);
-    return Array.from(new Set(([] as string[]).concat(...allTags))).sort().reverse();
+    const tags = Array.from(new Set(([] as string[]).concat(...allTags))).sort().reverse();
+    return tags.length <= 1 ? tags : tags.filter((tag) => tag !== 'latest');
   }
 
   render() {

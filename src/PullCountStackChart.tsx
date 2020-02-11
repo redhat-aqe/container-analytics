@@ -108,7 +108,7 @@ export class PullCountStackChart extends React.Component<IPullCountStackChartPro
 
     const legendData = _.sortBy(this.props.tags.map((tag, index) => (
       {name: tag, symbol: {fill: this.colorScale[index]}}
-    )), (e) => e.name);
+    )), (e) => e.name).reverse();
 
     const labelComponent = (
       <ChartTooltip
