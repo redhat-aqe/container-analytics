@@ -53,7 +53,7 @@ describe('PageViewLineChart component', () => {
     timespan.intervals = timespan.createIntervals();
     const wrapper = shallow(<PageViewLineChart data={data} timespan={timespan}/>);
     const component = wrapper.instance() as PageViewLineChart;
-    expect(component.formatLabel({datum: {x: 1, y: 5}})).toBe('Dec 31: 5');
+    expect(component.formatLabel({datum: {x: 1, y: 5}})).toBe('Dec 31: 5 views');
   });
 
   it('contructs chart data', () => {

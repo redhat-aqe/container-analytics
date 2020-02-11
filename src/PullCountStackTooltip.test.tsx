@@ -50,9 +50,9 @@ describe('PullCountStackTooltip component', () => {
     expect(wrapper.find('.rh-pull-count-stack-tooltip-content').children().length).toBe(3);
     let expected = timespan.intervals[datum.x].displayLong;
     expect(wrapper.find('.rh-pull-count-stack-tooltip-timespan').text()).toEqual(expected);
-    expected = '8.0 : 3 pulls';
+    expected = '8.0: 3 pulls';
     expect(wrapper.find('.rh-pull-count-stack-tooltip-item').at(0).text()).toEqual(expected);
-    expected = 'latest : 9 pulls';
+    expected = 'latest: 9 pulls';
     expect(wrapper.find('.rh-pull-count-stack-tooltip-item').at(1).text()).toEqual(expected);
   });
 });

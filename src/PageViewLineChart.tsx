@@ -52,7 +52,7 @@ export class PageViewLineChart extends React.Component<IPageViewLineChartProps> 
    * Format label tooltips
    */
   formatLabel = (point: any): string => {
-    return `${this.props.timespan.intervals[point.datum.x].display}: ${point.datum.y}`;
+    return `${this.props.timespan.intervals[point.datum.x].display}: ${point.datum.y} views`;
   }
 
   render() {

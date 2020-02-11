@@ -54,7 +54,7 @@ export class PullCountStackTooltip extends React.Component<IPullCountTooltipProp
               </div>
               {items.map((item, key) => (
                 <div className="rh-pull-count-stack-tooltip-item" key={key}>
-                  {item.name} : {item.y} pulls
+                  {item.name}: {item.y} pulls
                 </div>
                 ),
               )}
