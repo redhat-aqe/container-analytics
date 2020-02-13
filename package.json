@@ -1,6 +1,6 @@
 {
   "name": "@redhat-exd/container-analytics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/analytics.js",
   "license": "MIT",
   "dependencies": {
