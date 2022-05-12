@@ -77,7 +77,10 @@ export class PullCountTagSelect extends React.Component<IPullCountTagSelectProps
 
   getTags(): string[] {
     const allTags = this.props.data.map((record) => record.image_tags);
-    const tags = Array.from(new Set(([] as string[]).concat(...allTags))).sort().reverse();
+    const tags = Array.from(new Set(([] as string[])
+                      .concat(...allTags)))
+                      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+                      .reverse();
     return tags.length <= 1 ? tags : tags.filter((tag) => tag !== 'latest');
   }
 
