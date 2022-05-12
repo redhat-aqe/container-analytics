@@ -1,0 +1,26 @@
+---
+name: Pre-merge CI
+
+on:
+  pull_request:
+    branches:
+    - master
+
+  push:
+    branches:
+    - master
+
+  workflow_dispatch:
+
+jobs:
+  pre-merge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 12
+    - run: rm .npmrc
+    - run: npm ci
+    - run: npm run lint
+    - run: npm run test
